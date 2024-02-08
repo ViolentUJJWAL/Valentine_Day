@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Content</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/play-pause-o.css' rel='stylesheet'>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Base template configurations */
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            margin: 0;
+        }
+
+        #body-container {
+            height: 100%;
+            width: 100%;
+            background-image: url("https://render.fineartamerica.com/images/rendered/default/print/8/5.5/break/images/artworkimages/medium/3/simple-light-blue-abstract-cloud-like-background-texture-with-a-small-white-heart-in-the-corner-calm-serene-wallpaper-greetings-card-postcard-template-valentines-day-love-concept-copy-space-cleverartsmedia.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            overflow-y: scroll;
+        }
+
+
+        #password-container {
+            margin: 100px auto;
+            max-width: 400px;
+        }
+
+        #password-input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 20px;
+            letter-spacing: 10px;
+            margin-top: 15px;
+        }
+
+        #password-button {
+            margin-top: 10px;
+            border-radius: 50px;
+            box-shadow: 5px 5px 10px #3f40429a;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        #content {
+            display: none;
+            margin-top: 20px;
+            margin: 100px auto;
+            max-width: 600px;
+
+        }
+
+
+        /*card*/
+
+
+        .main {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .cards_item {
+            display: flex;
+            padding: 1rem;
+        }
+
+        .card_image {
+            height: calc(13*1.2rem);
+            padding: 1.2rem 1.2rem 0;
+            position: relative;
+        }
+
+        .card_image:before,
+        .card_image:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            left: 60%;
+            top: 0;
+            height: 45px;
+            background: #9e9befce;
+            transform: rotate(45deg);
+        }
+
+        .card_image:after {
+            transform: rotate(-45deg);
+            top: auto;
+            bottom: -22px;
+            left: 40%;
+        }
+
+        .card_image img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .cards_item {
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+        }
+
+
+        .card {
+            background-color: white;
+            border-radius: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding-left: 30px;
+            background: repeating-linear-gradient(#0000 0 calc(1.2rem - 1px), #66afe1 0 1.2rem) right bottom /100% 100%, linear-gradient(red 0 0) 30px 0/2px 100% #fff;
+            background-repeat: no-repeat;
+            line-height: 1.2rem;
+            -webkit-mask: radial-gradient(circle .8rem at 2px 50%, #0000 98%, #000)0 0/100% 2.4rem;
+        }
+
+        .card_content {
+            padding: 1.2rem;
+        }
+
+        h2.card_title,
+        p {
+            margin: 1.2rem 0;
+        }
+
+        h2.card_title {
+            font-size: 1.3em;
+            text-align: left;
+            font-family: "Sofia", sans-serif;
+        }
+
+
+        /*card 2*/
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap');
+
+
+        .container-2 {
+
+            transform: translate(0%, 0%);
+            height: 500px;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 20px 8px #d0d0d0;
+            border: solid black 2px;
+            margin: 100px 5px;
+        }
+
+        .content-2 {
+            position: absolute;
+            top: 50%;
+            height: 100%;
+            width: 100%;
+            transform: translatey(-50%);
+            text-align: justify;
+            color: rgb(255, 255, 255);
+            font-family: 'Merriweather', serif;
+            background: #00000093;
+            margin: 0 auto;
+        }
+
+        .content-2 h1 {
+            font-weight: 900;
+            font-size: 40px;
+            background-image: url("https://worldofprintables.com/wp-content/uploads/2023/06/Watercolor-Hearts-Love-Background-Desktop.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .content-2 div {
+            text-align: center;
+        }
+
+        .content-2 div h4 {
+            font-size: 20px;
+        }
+
+
+
+        .flap {
+            width: 100%;
+            height: 100%;
+        }
+
+        .flap::before {
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 50%;
+            left: 0;
+            background: url("https://w0.peakpx.com/wallpaper/249/337/HD-wallpaper-good-lockscreen-halfheart-anime-heart.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            transition: 1s;
+        }
+
+        .flap::after {
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 50%;
+            right: 0;
+            background: url("https://wallpapercave.com/wp/wp11097477.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            transition: 1s;
+        }
+
+        .container-2:hover .flap::after {
+            transform: translatex(300px);
+        }
+
+        .container-2:hover .flap::before {
+            transform: translatex(-300px);
+        }
+
+
+        /*heading*/
+
+        #heading {
+            height: 90vh;
+            padding: 0;
+        }
+
+        #heading h1 {
+            font-family: 'Nunito', sans-serif;
+            text-transform: uppercase;
+            font-size: 7rem;
+            text-align: center;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            margin: 0;
+            min-height: 50%;
+            position: relative;
+            line-height: 1;
+            color: #0000002d;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #heading h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media only screen and (min-width: 600px) and (max-width: 1000px) {
+            #heading h1 {
+                font-size: 5rem;
+            }
+        }
+
+        #heading h1:before {
+            content: attr(data-text);
+            position: absolute;
+            background: linear-gradient(#f70000, #f89200, #f8f501, #038f00, #0168f8, #a200f7);
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 100% 100%;
+            line-height: 1;
+            clip-path: ellipse(120px 120px at -2.54% -9.25%);
+            animation: swing 5s infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes swing {
+            0% {
+                -webkit-clip-path: ellipse(30% 60% at -2.54% -9.25%);
+                clip-path: ellipse(30% 60% at -2.54% -9.25%);
+            }
+
+            50% {
+                -webkit-clip-path: ellipse(30% 60% at 49.66% 64.36%);
+                clip-path: ellipse(30% 60% at 49.66% 64.36%);
+
+            }
+
+            100% {
+                -webkit-clip-path: ellipse(30% 60% at 102.62% -1.61%);
+                clip-path: ellipse(30% 60% at 102.62% -1.61%);
+            }
+        }
+
+        .scrollLink {
+            text-decoration: none;
+        }
+
+        .audioBox {
+            position: absolute;
+            top: 10px;
+            right: 50px;
+            height: 25px;
+            width: 25px;
+            border: solid black 2px;
+            background-color: #ffffff7e;
+            z-index: 3;
+        }
+
+
+        /*button*/
+
+
+
+        .type--A {
+            --line_color: #000000;
+            --back_color: #FFECF6;
+        }
+
+        .button {
+            position: relative;
+            z-index: 0;
+            width: 240px;
+            height: 56px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--line_color);
+            letter-spacing: 2px;
+            transition: all .3s ease;
+        }
+
+        .button__text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button::before,
+        .button::after,
+        .button__text::before,
+        .button__text::after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--line_color);
+            transition: all .5s ease;
+        }
+
+        .button::before {
+            top: 0;
+            left: 54px;
+            width: calc(100% - 56px * 2 - 16px);
+        }
+
+        .button::after {
+            top: 0;
+            right: 54px;
+            width: 8px;
+        }
+
+        .button__text::before {
+            bottom: 0;
+            right: 54px;
+            width: calc(100% - 56px * 2 - 16px);
+        }
+
+        .button__text::after {
+            bottom: 0;
+            left: 54px;
+            width: 8px;
+        }
+
+        .button__line {
+            position: absolute;
+            top: 0;
+            width: 56px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .button__line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150%;
+            height: 100%;
+            box-sizing: border-box;
+            border-radius: 300px;
+            border: solid 3px var(--line_color);
+        }
+
+        .button__line:nth-child(1),
+        .button__line:nth-child(1)::before {
+            left: 0;
+        }
+
+        .button__line:nth-child(2),
+        .button__line:nth-child(2)::before {
+            right: 0;
+        }
+
+        .button:hover {
+            letter-spacing: 6px;
+        }
+
+        .button:hover::before,
+        .button:hover .button__text::before {
+            width: 8px;
+        }
+
+        .button:hover::after,
+        .button:hover .button__text::after {
+            width: calc(100% - 56px * 2 - 16px);
+        }
+
+        .button__drow1,
+        .button__drow2 {
+            position: absolute;
+            z-index: -1;
+            border-radius: 16px;
+            transform-origin: 16px 16px;
+        }
+
+        .button__drow1 {
+            top: -16px;
+            left: 40px;
+            width: 32px;
+            height: 0;
+            transform: rotate(30deg);
+        }
+
+        .button__drow2 {
+            top: 44px;
+            left: 77px;
+            width: 32px;
+            height: 0;
+            transform: rotate(-127deg);
+        }
+
+        .button__drow1::before,
+        .button__drow1::after,
+        .button__drow2::before,
+        .button__drow2::after {
+            content: '';
+            position: absolute;
+        }
+
+        .button__drow1::before {
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 32px;
+            border-radius: 16px;
+            transform-origin: 16px 16px;
+            transform: rotate(-60deg);
+        }
+
+        .button__drow1::after {
+            top: -10px;
+            left: 45px;
+            width: 0;
+            height: 32px;
+            border-radius: 16px;
+            transform-origin: 16px 16px;
+            transform: rotate(69deg);
+        }
+
+        .button__drow2::before {
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 32px;
+            border-radius: 16px;
+            transform-origin: 16px 16px;
+            transform: rotate(-146deg);
+        }
+
+        .button__drow2::after {
+            bottom: 26px;
+            left: -40px;
+            width: 0;
+            height: 32px;
+            border-radius: 16px;
+            transform-origin: 16px 16px;
+            transform: rotate(-262deg);
+        }
+
+        .button__drow1,
+        .button__drow1::before,
+        .button__drow1::after,
+        .button__drow2,
+        .button__drow2::before,
+        .button__drow2::after {
+            background: var(--back_color);
+        }
+
+        .button:hover .button__drow1 {
+            animation: drow1 ease-in .06s;
+            animation-fill-mode: forwards;
+        }
+
+        .button:hover .button__drow1::before {
+            animation: drow2 linear .08s .06s;
+            animation-fill-mode: forwards;
+        }
+
+        .button:hover .button__drow1::after {
+            animation: drow3 linear .03s .14s;
+            animation-fill-mode: forwards;
+        }
+
+        .button:hover .button__drow2 {
+            animation: drow4 linear .06s .2s;
+            animation-fill-mode: forwards;
+        }
+
+        .button:hover .button__drow2::before {
+            animation: drow3 linear .03s .26s;
+            animation-fill-mode: forwards;
+        }
+
+        .button:hover .button__drow2::after {
+            animation: drow5 linear .06s .32s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes drow1 {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 100px;
+            }
+        }
+
+        @keyframes drow2 {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0;
+            }
+
+            11% {
+                opacity: 1;
+            }
+
+            100% {
+                width: 120px;
+            }
+        }
+
+        @keyframes drow3 {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 80px;
+            }
+        }
+
+        @keyframes drow4 {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 120px;
+            }
+        }
+
+        @keyframes drow5 {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 124px;
+            }
+        }
+
+
+        .button-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button:not(:last-child) {
+            margin-bottom: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="body-container">
+        <div id="password-container">
+            <h1>Enter Your Nick Name Dear</h1>
+            <span>[<b>NOTE:</b> small letters only]</span>
+            <input type="password" id="password-input" placeholder="Password">
+            <br />
+            <button id="password-button">Unlock</button>
+        </div>
+        <div id="content">
+
+            <div id="heading">
+                <a href="#note" class="scrollLink">
+                    <h1 data-text="Happy Valentine's Day">
+                        Happy Valentine's Day
+                    </h1>
+                </a>
+            </div>
+
+
+            <div class="audioBox">
+                <svg id="audio" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 9H11V15H9V9Z" fill="currentColor" />
+                    <path d="M15 15H13V9H15V15Z" fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                        fill="currentColor" />
+                </svg>
+            </div>
+            <div class="main" id="note">
+                <div class="cards_item">
+                    <div class="card">
+                        <div class="card_content">
+                            <div class="card_text">
+
+                                <h2 class="card_title">
+                                    Hlo
+                                    <br />
+                                    Dear DORAEMON,
+                                </h2>
+                                <p>
+                                    <b>Happy Valentine's Day!</b> As this special day of love, I wanted to give you a
+                                    gift that
+                                    speaks to the depth of my affection and appreciation for you.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://doraemonworld2018.files.wordpress.com/2018/03/the-forever-friendship.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>pata hai doraemon jab apne mujhase baat karna start kiya tha to mujhe bahut achha
+                                    lagta tha ki chalo koi to baat karne wala mila but us time mind me ye bhi tha ki
+                                    kuch
+                                    time baad ye baate bhi band ho jae gi and me fir usi akele me wapas chala jauga ye
+                                    sab pata tha to daar nahi lagta tha utna but aaj in cheezo se daar lagne laga hai
+                                    bas
+                                    yahi lagta hai ki aap esa hi baat karte raho and me apki care karta rahu or medicine
+                                    ke liye yaad dilta rahu or morning me apse good morning sunu.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img src="https://m.media-amazon.com/images/I/51ZTjQRvWlS.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>yaar sachi aapse baat kar ke bahut achha lagta hai and apki smile with two laddu unko
+                                    dekha kar to or bhi achha lagta hai bas lagta hai ki dono laddu ko pakad ke kuchhi
+                                    kuchhi ku
+                                    karta rahu.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://p4.wallpaperbetter.com/wallpaper/676/52/867/doraemon-doraemon-anime-1920x1080-wallpaper-preview.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>yaar kabhi kabhi sochta hu ki me apse itni dur kyo raheta hu, kyo god ne mere ko us
+                                    city me nahi beja. and fir jab mene moon ko dekha kar apse baat kiya to fir laga ki
+                                    yaar itna bhi dur nahi hai sirf 3 to 5 minutes ka hi to distance hai jo moon me meri
+                                    city se dikhta hai wo apko bhi apki city se dikhta hai esa lagta hai ki hum dono
+                                    sath
+                                    me betha ke moon ko dekha rahe hai.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://animeindia.in/wp-content/uploads/2021/11/doraemon_is_lying_on_cupboard_hd_doraemon-t2.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>pata hai doraemon jab aap raat ko call me baat karte karte so jate ho na to me apki
+                                    breath ko hi sunta raheta hu or usko sunte sunte hi so jata hu and in case uske baad
+                                    meri nind khuli or call chal raha hai to call cut nahi karta hu kyoki breath ki
+                                    sound
+                                    nahi ae gi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img src="https://images7.alphacoders.com/123/1232626.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>yaar mene games khelna bahut pahele band kar diya tha lekin shirf aapse more baat ho
+                                    jae is liye me Free fire, ludo and BGMI install kar liye mere ko ye laga apka maan
+                                    jo bhi game khelne ka kare bas wo game mere pass bhi ho. Mere ko game khelna achha
+                                    bhi nahi lagta hai lekin bas aapse baat ho isliye game khelna bhi achha lagne laga
+                                    tha us time and chess ki to baat hi kya kare ye chess banne wale ko to me dil se
+                                    thanks bolta hu and mere ko chess me little bit achha karne wali ladki ko to dil se
+                                    thankyou so much.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://variety.com/wp-content/uploads/2014/05/doraemon2.jpg?crop=0px%2C193px%2C1593px%2C887px&resize=681%2C383">
+                        </div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>doraemon ek baat bolu pata nahi kitne logo ne apko ye bola hai ki apki eyes bahut
+                                    achhi hai just like ek ocean ki taraha. or mere ko thalassophobia hone ke baad bhi
+                                    mera is ocean me dubne ka maan karta hai. bas is ocean ko hi dekhta rahu.
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://s.yimg.com/ny/api/res/1.2/0u3oXeT20M8keANYwskYsA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTUxOTtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2021-02/91333f10-6625-11eb-bde9-337d04aefcbd"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>yaar hum logo ne ek dusre ko samne se dekha nahi uske
+                                    baad bhi hum dono ke bich itni sahi bonding bani or haan aap mere liye bahut special
+                                    ho meri life me apki priority bahut jada hai. bas aapse milna chahta hu ab or us
+                                    moments ke liye kafi excited hu. I hope February me milna ho jae.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card_image"><img
+                                src="https://wallpapers.com/images/featured-full/doraemon-and-nobita-5gsy4y3exa2b55a3.jpg"
+                                alt="A side view of a plate of figs and berries. "></div>
+                        <div class="card_content">
+                            <div class="card_text">
+                                <p>are esa to me pata nahi kitni books hi likha duga aap pe. beti bolna ho, chotti si
+                                    bacchi ki baat, doraemon ki pocket ho and aapka pani puri ke liye pyar esa hi or
+                                    bahut cheeze hai. kabhi 1 se 2 week nikal kar baat karna fir or cheeze batauga.
+                                </p>
+                                <p style="text-align: left;">
+                                    thanks for meri life me aap ae. <br />
+                                    thanks for mere best friend banne ke liye.<br />
+                                    and thanks for every thing.
+                                </p>
+                                <p style="text-align: end; font-family: 'Sofia', sans-serif;">
+                                    <b>apka Nobita.</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-2">
+                <div class="content-2">
+                    <div>
+                        <h1 id="hvd" style="text-transform: uppercase;">Happy Valentine's <br />Day</h1>
+                    </div>
+                    <div>
+                        <h4 id="ursc">
+                            <!-- French -->
+                            tu es si mignonne mon Doraemon
+                        </h4>
+                        <h4 id="sAgm">
+                            <!-- Japanese -->
+                            あなたの笑顔とおはようが毎日を明るくします
+                        </h4>
+                        <h4 id="irluf">
+                            <!-- Bangla -->
+                            আমি সত্যিই তোমাকে পছন্দ করি আমার প্রিয় বন্ধু
+                        </h4>
+                        <h1 id="ilu" style="font-size: 40px; font-weight: 600;">
+                            <!-- Korean -->
+                            사랑해요
+                        </h1>
+                    </div>
+                </div>
+                <div class="flap"></div>
+            </div>
+        </div>
+
+
+        <div class="button-container">
+            <a href="https://wa.link/qa90bh" target="_blank" class="button type--A">
+                <div class="button__line"></div>
+                <div class="button__line"></div>
+                <span class="button__text">Send me Message</span>
+                <div class="button__drow1"></div>
+                <div class="button__drow2"></div>
+            </a>
+        </div>
+
+        <audio id="myAudio">
+            <source src="doraemon_opening_song_HD(128k).m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="myAudio-ILU">
+            <source src="Every_time.m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+
+
+        const _0x13b3ac = _0x47ae; (function (_0x45adba, _0x53e77c) { const _0x5b7cbd = _0x47ae, _0x1069a6 = _0x45adba(); while (!![]) { try { const _0x2f84fa = parseInt(_0x5b7cbd(0xec)) / 0x1 + -parseInt(_0x5b7cbd(0xf4)) / 0x2 * (parseInt(_0x5b7cbd(0xe7)) / 0x3) + parseInt(_0x5b7cbd(0xfa)) / 0x4 * (-parseInt(_0x5b7cbd(0xfc)) / 0x5) + parseInt(_0x5b7cbd(0x111)) / 0x6 * (-parseInt(_0x5b7cbd(0x108)) / 0x7) + -parseInt(_0x5b7cbd(0x110)) / 0x8 + parseInt(_0x5b7cbd(0x10e)) / 0x9 + parseInt(_0x5b7cbd(0xea)) / 0xa; if (_0x2f84fa === _0x53e77c) break; else _0x1069a6['push'](_0x1069a6['shift']()); } catch (_0xd3d14b) { _0x1069a6['push'](_0x1069a6['shift']()); } } }(_0x27b1, 0x2e091), document[_0x13b3ac(0xfd)](_0x13b3ac(0x105), _0x2fb230 => _0x2fb230[_0x13b3ac(0xe8)]())); const passwordInput = document['getElementById'](_0x13b3ac(0x10b)), passwordButton = document[_0x13b3ac(0x10c)](_0x13b3ac(0xe9)), content = document[_0x13b3ac(0x10c)](_0x13b3ac(0x106)), passwordContainer = document[_0x13b3ac(0x10c)](_0x13b3ac(0x10a)), ilu = document['getElementById'](_0x13b3ac(0x104)), ursc = document[_0x13b3ac(0x10c)](_0x13b3ac(0x103)), sAgm = document[_0x13b3ac(0x10c)]('sAgm'), irluf = document[_0x13b3ac(0x10c)](_0x13b3ac(0x101)), audio = document[_0x13b3ac(0x10c)]('audio'), myAudioILU = document[_0x13b3ac(0x10c)](_0x13b3ac(0xeb)); passwordButton[_0x13b3ac(0xfd)](_0x13b3ac(0xf9), function () { const _0x35e707 = _0x13b3ac, _0x1c4055 = passwordInput[_0x35e707(0x114)], _0x550d2f = _0x35e707(0x107); _0x1c4055 === _0x550d2f ? (content[_0x35e707(0xf1)][_0x35e707(0xfe)] = _0x35e707(0xf3), passwordContainer['style']['display'] = _0x35e707(0xe5), document[_0x35e707(0xe6)] = _0x35e707(0xf5), document['getElementById'](_0x35e707(0x113))[_0x35e707(0xf1)]['backgroundImage'] = _0x35e707(0xee), document[_0x35e707(0x10c)](_0x35e707(0xf8))[_0x35e707(0xed)](), document[_0x35e707(0x10c)](_0x35e707(0xf8))[_0x35e707(0x10d)] = !![], document[_0x35e707(0x10c)]('myAudio')[_0x35e707(0xf2)] = 0.1) : (alert(_0x35e707(0x102)), passwordInput[_0x35e707(0x114)] = ''); }); function _0x47ae(_0x3f8162, _0x21bf31) { const _0x27b17b = _0x27b1(); return _0x47ae = function (_0x47ae65, _0x3ed5d2) { _0x47ae65 = _0x47ae65 - 0xe5; let _0x249f05 = _0x27b17b[_0x47ae65]; return _0x249f05; }, _0x47ae(_0x3f8162, _0x21bf31); } var audioPlay = !![]; audio[_0x13b3ac(0xfd)](_0x13b3ac(0xf9), function () { const _0x4a6253 = _0x13b3ac; audioPlay ? (document[_0x4a6253(0x10c)](_0x4a6253(0xf8))[_0x4a6253(0xfb)](), audio[_0x4a6253(0xff)] = _0x4a6253(0xf7)) : (document[_0x4a6253(0x10c)](_0x4a6253(0xf8))['play'](), audio[_0x4a6253(0xff)] = _0x4a6253(0x109)), audioPlay = !audioPlay; }); var iluToggal = !![]; ilu['addEventListener'](_0x13b3ac(0xf9), function () { const _0x1f88fe = _0x13b3ac; myAudioILU[_0x1f88fe(0xf2)] = 0.1, myAudioILU[_0x1f88fe(0xfb)](), document['getElementById'](_0x1f88fe(0xf8))[_0x1f88fe(0xfb)](), myAudioILU[_0x1f88fe(0xed)](), audioPlay && setTimeout(function () { const _0x42cf15 = _0x1f88fe; document[_0x42cf15(0x10c)](_0x42cf15(0xf8))['play'](); }, 0x7530), !iluToggal ? ilu[_0x1f88fe(0xff)] = _0x1f88fe(0x10f) : ilu[_0x1f88fe(0xff)] = _0x1f88fe(0xef), iluToggal = !iluToggal; }); var urscToggal = !![]; ursc[_0x13b3ac(0xfd)](_0x13b3ac(0xf9), function () { const _0x12e351 = _0x13b3ac; !urscToggal ? ursc[_0x12e351(0xff)] = _0x12e351(0x100) : ursc['innerHTML'] = _0x12e351(0xf6), urscToggal = !urscToggal; }); var sAgmToggal = !![]; sAgm[_0x13b3ac(0xfd)](_0x13b3ac(0xf9), function () { const _0x1845b1 = _0x13b3ac; !sAgmToggal ? sAgm['innerHTML'] = _0x1845b1(0xf0) : sAgm[_0x1845b1(0xff)] = _0x1845b1(0x115), sAgmToggal = !sAgmToggal; }); function _0x27b1() { const _0x3ad078 = ['irluf', 'Incorrect\x20password.\x20Try\x20again.', 'ursc', 'ilu', 'contextmenu', 'content', 'doraemon', '2863IRcjsx', '<path\x20d=\x22M9\x209H11V15H9V9Z\x22\x20fill=\x22currentColor\x22\x20/><path\x20d=\x22M15\x2015H13V9H15V15Z\x22\x20fill=\x22currentColor\x22\x20/><path\x20fill-rule=\x22evenodd\x22\x20clip-rule=\x22evenodd\x22\x20d=\x22M23\x2012C23\x2018.0751\x2018.0751\x2023\x2012\x2023C5.92487\x2023\x201\x2018.0751\x201\x2012C1\x205.92487\x205.92487\x201\x2012\x201C18.0751\x201\x2023\x205.92487\x2023\x2012ZM21\x2012C21\x2016.9706\x2016.9706\x2021\x2012\x2021C7.02944\x2021\x203\x2016.9706\x203\x2012C3\x207.02944\x207.02944\x203\x2012\x203C16.9706\x203\x2021\x207.02944\x2021\x2012Z\x22\x20fill=\x22currentColor\x22\x20/>', 'password-container', 'password-input', 'getElementById', 'loop', '2557233Znefza', '사랑해요', '969288mcHNWY', '5052UVMcsh', 'আমি\x20সত্যিই\x20তোমাকে\x20পছন্দ\x20করি\x20আমার\x20প্রিয়\x20বন্ধু', 'body-container', 'value', 'YOUR\x20SMILE\x20&\x20GOOD\x20MORNING\x20MAKES\x20EVERY\x20DAY\x20BRIGHTER', 'none', 'title', '3UxqJTP', 'preventDefault', 'password-button', '6925890EcWRru', 'myAudio-ILU', '16869ELAjCG', 'play', 'url(\x27https://qph.cf2.quoracdn.net/main-qimg-284df7f935d898beb05f222a581ba8ad-lq\x27)', 'I\x20LOVE\x20YOU', 'あなたの笑顔とおはようが毎日を明るくします', 'style', 'volume', 'block', '580982aekoDo', 'Happy\x20Valentine\x27s\x20Day\x20My\x20DORAEMON', 'YOU\x20ARE\x20SO\x20CUTE\x20MY\x20DORAEMON', '<path\x20fill-rule=\x22evenodd\x22\x20clip-rule=\x22evenodd\x22\x20d=\x22M12\x2021C16.9706\x2021\x2021\x2016.9706\x2021\x2012C21\x207.02944\x2016.9706\x203\x2012\x203C7.02944\x203\x203\x207.02944\x203\x2012C3\x2016.9706\x207.02944\x2021\x2012\x2021ZM12\x2023C18.0751\x2023\x2023\x2018.0751\x2023\x2012C23\x205.92487\x2018.0751\x201\x2012\x201C5.92487\x201\x201\x205.92487\x201\x2012C1\x2018.0751\x205.92487\x2023\x2012\x2023Z\x22\x20fill=\x22currentColor\x22\x20/><path\x20d=\x22M16\x2012L10\x2016.3301V7.66987L16\x2012Z\x22\x20fill=\x22currentColor\x22\x20/>', 'myAudio', 'click', '49004ZoDHMz', 'pause', '20yZlbtx', 'addEventListener', 'display', 'innerHTML', 'tu\x20es\x20si\x20mignonne\x20mon\x20Doraemon']; _0x27b1 = function () { return _0x3ad078; }; return _0x27b1(); } var irlufToggal = !![]; irluf[_0x13b3ac(0xfd)](_0x13b3ac(0xf9), function () { const _0x58f566 = _0x13b3ac; !irlufToggal ? irluf[_0x58f566(0xff)] = _0x58f566(0x112) : irluf['innerHTML'] = 'I\x20REALLY\x20LIKE\x20YOU\x20MY\x20DEAR\x20FRIEND', irlufToggal = !irlufToggal; });
+
+    </script>
+</body>
+
+</html>
